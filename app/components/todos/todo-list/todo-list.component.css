@@ -1,6 +1,14 @@
 todo-item {
     display: flex;
     align-items: center;
+    border: solid 1px #dddddd;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+todo-item:hover {
+    background: lightblue;
+    cursor: pointer;
 }
 
 todo-item:not(:last-child) {

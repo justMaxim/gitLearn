@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, Renderer } from '@angular/core';
 
 import { Todo } from '../../../shared/todo.model';
 
@@ -12,7 +12,12 @@ export class TodoItemComponent {
     @Output() toggled: EventEmitter<Todo>;
     @Output() deleted: EventEmitter<Todo>;
 
-    constructor() {
+    constructor(elementRef: ElementRef, renderer: Renderer) {
+        renderer.listen(elementRef.nativeElement, 'click', (event: Event) => {
+            if(event.srcElement.localName === 'todo-item') {
+                this.toggle();
+            }
+        });
         this.toggled = new EventEmitter<Todo>();
         this.deleted = new EventEmitter<Todo>();
     }
